@@ -9,12 +9,19 @@ class StashGrabber:
         for stash in stash_json['stashes']:
             if stash['public']:
                 if len(stash['items']) > 0:
-                    temp_stash = stash
-                    for i in list(temp_stash.keys()):
+                    for i in list(stash.keys()):
                         if i != 'stash' and i != 'items':
-                            del temp_stash[i]
-            self.temp_stash_json.append(temp_stash)
+                            del stash[i]
+                    temp_stash = stash
+                    self._keep_only_rares(temp_stash)
+                    self.temp_stash_json.append(temp_stash)
         JsonWriter.write_json(self.temp_stash_json)
+
+    def _keep_only_rares(self, temp_stash):
+        for item in range(len(temp_stash['items'])-1, -1, -1):
+            if temp_stash['items'][item]['frameType'] != 2:
+                print(item)
+                del temp_stash['items'][item]
 
 
 class StashAPIRequester:

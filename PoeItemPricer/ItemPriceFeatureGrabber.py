@@ -32,7 +32,8 @@ def generate_training_test_sets():
         json.dump([], trainfile)
     with open('featuredata.json', 'r', encoding='utf8') as infile:
         featuredata = json.load(infile)
-    training_example = {}
+    training_example = {'Armour': 0, 'Evasion Rating': 0, 'Energy Shield': 0, 'Life': 0, 'Mana': 0,
+                        'Lightning Res': 0, 'Fire Res': 0, 'Cold Res': 0}
 
 
 load_extracted_features()
