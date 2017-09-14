@@ -20,7 +20,6 @@ class StashGrabber:
     def _keep_only_rares(self, temp_stash):
         for item in range(len(temp_stash['items'])-1, -1, -1):
             if temp_stash['items'][item]['frameType'] != 2:
-                print(item)
                 del temp_stash['items'][item]
 
 
