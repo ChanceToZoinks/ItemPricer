@@ -150,7 +150,7 @@ class ItemPriceTrainingSetup:
                 self.training_example['+1 Gems'] = int(x.strip('+').split(' ', 1)[0])
             if 'Movement Speed' in x and 'Minions' not in x:
                 self.training_example['Movement Speed'] = int(x.split('%', 1)[0])
-            if 'Cast Speed' in x:
+            if 'Cast Speed' in x and 'Unique Boss' not in x:
                 self.training_example['Cast Speed'] = int(x.split('%', 1)[0])
             if 'to Accuracy Rating' in x:
                 self.training_example['Accuracy'] = int(x.strip('+').split(' ', 1)[0])
@@ -171,14 +171,14 @@ class ItemPriceTrainingSetup:
     def _extract_price_info(self, item_dict):
         if '~b/o' in item_dict['note']:
             if 'chaos' in item_dict['note']:
-                self.training_example['Note'] = int(item_dict['note'].strip('~b/o ').split(' ', 1)[0])
+                self.training_example['Note'] = float(item_dict['note'].strip('~b/o ').split(' ', 1)[0])
             elif 'exa' in item_dict['note']:
-                self.training_example['Note'] = int(item_dict['note'].strip('~b/o ').split(' ', 1)[0]) * get_exalt_chaos_price()
+                self.training_example['Note'] = float(item_dict['note'].strip('~b/o ').split(' ', 1)[0]) * get_exalt_chaos_price()
         elif '~price' in item_dict['note']:
             if 'chaos' in item_dict['note']:
-                self.training_example['Note'] = int(item_dict['note'].strip('~price ').split(' ', 1)[0])
+                self.training_example['Note'] = float(item_dict['note'].strip('~price ').split(' ', 1)[0])
             elif 'exa' in item_dict['note']:
-                self.training_example['Note'] = int(item_dict['note'].strip('~price ').split(' ', 1)[0]) * get_exalt_chaos_price()
+                self.training_example['Note'] = float(item_dict['note'].strip('~price ').split(' ', 1)[0]) * get_exalt_chaos_price()
 
     def _parse_res_string(self, mod_string):
         if 'fire' in mod_string.lower():
