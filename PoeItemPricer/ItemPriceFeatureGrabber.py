@@ -30,13 +30,13 @@ class ItemPriceTrainingSetup:
                 temp.append(temp_dict)
         return temp
 
-    training_example = {'Armour': "0", 'Evasion Rating': "0", 'Energy Shield': "0", 'Life': "0", 'Mana': "0",
-                        'Resistance': "0", 'Avg Phys Damage': "0", 'Avg Ele Damage': "0", 'Rarity': "0",
-                        'Added Phys': "0", 'Added Light': "0", 'Added Fire': "0", 'Added Cold': "0",
-                        'Intelligence': "0", 'Strength': "0", 'Dexterity': "0", 'Local Attack Speed': "0", 'Local Crit Chance': "0",
-                        'Global Crit Chance': "0", 'Crit Strike Multiplier': "0", 'Spell Damage': "0", 'Accuracy': "0",
-                        'Ele Damage With Attacks': "0", 'Movement Speed': "0", 'Spell Crit Chance': "0", 'Attack Speed': "0",
-                        'Cast Speed': "0", 'Sockets': "0", 'Links': "0", '+1 Gems': "0", 'Note': "0"
+    training_example = {'Armour': [], 'Evasion Rating': [], 'Energy Shield': [], 'Life': [], 'Mana': [],
+                        'Resistance': [], 'Avg Phys Damage': [], 'Avg Ele Damage': [], 'Rarity': [],
+                        'Added Phys': [], 'Added Light': [], 'Added Fire': [], 'Added Cold': [],
+                        'Intelligence': [], 'Strength': [], 'Dexterity': [], 'Local Attack Speed': [], 'Local Crit Chance': [],
+                        'Global Crit Chance': [], 'Crit Strike Multiplier': [], 'Spell Damage': [], 'Accuracy': [],
+                        'Ele Damage With Attacks': [], 'Movement Speed': [], 'Spell Crit Chance': [], 'Attack Speed': [],
+                        'Cast Speed': [], 'Sockets': [], 'Links': [], '+1 Gems': [], 'Note': []
                         }
 
     def _generate_training_file(self):
@@ -148,7 +148,7 @@ class ItemPriceTrainingSetup:
                 self.training_example['Spell Crit Chance'] = int(x.split('%', 1)[0])
             if 'Level of Socketed Gems' in x:
                 self.training_example['+1 Gems'] = int(x.strip('+').split(' ', 1)[0])
-            if 'Movement Speed' in x:
+            if 'Movement Speed' in x and 'Minions' not in x:
                 self.training_example['Movement Speed'] = int(x.split('%', 1)[0])
             if 'Cast Speed' in x:
                 self.training_example['Cast Speed'] = int(x.split('%', 1)[0])
