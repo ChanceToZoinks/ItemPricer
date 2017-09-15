@@ -127,7 +127,7 @@ class ItemPriceTrainingSetup:
                     self.training_example['Intelligence'] += int(x.strip('+').split(' ', 1)[0])
                 else:
                     self.training_example['Intelligence'] = int(x.strip('+').split(' ', 1)[0])
-            if 'Life' in x:
+            if 'to maximum Life' in x:
                 self.training_example['Life'] = int(x.strip('+').split(' ', 1)[0])
             if 'Elemental Damage with Attack' in x:
                 self.training_example['Ele Damage With Attacks'] = int(x.split('%', 1)[0])
@@ -138,7 +138,7 @@ class ItemPriceTrainingSetup:
                     self._parse_added_damage_string(x)
             if 'Attack Speed' in x:
                 self.training_example['Attack Speed'] = int(x.split('%', 1)[0])
-            if 'Mana' in x:
+            if 'maximum Mana' in x:
                 self.training_example['Mana'] = int(x.strip('+').split(' ', 1)[0])
             if 'Spell Damage' in x:
                 self.training_example['Spell Damage'] = int(x.strip('+').split('%', 1)[0])
@@ -204,12 +204,14 @@ class ItemPriceTrainingSetup:
         if 'physical' in mod_string.lower():
             self.training_example['Added Phys'] = avg
 
+
 def get_exalt_chaos_price():
     params = {'league': 'Harbinger'}
     r = requests.get('http://api.poe.ninja/api/Data/GetCurrencyOverview', params=params)
-    for x in r.json():
+    for x in r.json()['lines']:
         if x['currencyTypeName'] == "Exalted Orb":
             return x['receive']['value']
+
 
 i = ItemPriceTrainingSetup()
 

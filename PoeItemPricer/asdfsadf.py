@@ -1,7 +1,7 @@
+import requests
 
+params = {'league': 'Harbinger'}
+r = requests.get('http://api.poe.ninja/api/Data/GetCurrencyOverview', params=params)
+rr = r.json()
 
-s = "~price 60 chaos"
-
-x = s.strip('~price ').split(' ', 1)[0]
-
-print(x)
+print(rr)
